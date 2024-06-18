@@ -2,9 +2,9 @@
 
 def call(){
     echo "building the docker image..."
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
-        sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push nanajanashia/demo-app:jma-2.0'
+    withCredentials([usernamePassword(credentialsId: 'dockerhub-login', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+        sh 'docker build -t laweee/demo-java-maven-app:1.3 .'
+        sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+        sh 'docker push laweee/demo-java-maven-app:1.3'
     }
 }
